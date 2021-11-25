@@ -1,0 +1,17 @@
+service:  serverless-test
+provider:
+ name: aws
+ runtime: nodejs14.x
+ stage: dev
+ region: us-east-1
+functions:
+ server:
+   handler: index.server
+   events:
+     - http: 
+         path: /    
+         method: ANY
+     - http: 
+        path: /{proxy+}
+        method: ANY
+

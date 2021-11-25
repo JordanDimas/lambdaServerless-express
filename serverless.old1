@@ -1,0 +1,16 @@
+service:  FNL-DEV-EKT-FINCADO-SLS # nombre del servicio que se subira
+useDotenv: true # si este valor se marca en true tomara las variables de entorno de los archivos 
+#con terminacion env, estos son excluidos al actualizar la lambda las variables del archivo env son 
+#tomadas como referencia para asignar a el archivo yml la variable haciendo referencia de la siguiente manera Ejemplo [ stage: ${nombre la de variable} ]
+provider:
+ name: aws # nombre de proveedor (en este caso desplegamos en aws)
+ runtime: nodejs14.x # version de node o lenguaje utilizado 
+ stage: dev # ambiente en el que se depliega la lambda()
+ region: us-east-1 # zona en la que se depliegua la lambda
+ memorySize: 512 # memoria asignadoa a la lambda
+ lambdaHashingVersion: 20201221 # optional, version of hashing algorithm that should be used by the framework
+functions: #funciones en la labda
+ fnl-dev-ekt-fincado-server: # nombre de la funcion en la lambda este uede ser cambiada
+   handler: index.server # nombre del archivo principal 
+   environment: # definicion para configuraciones de ambiente
+    ENVIROMENT_VARIABLE_EXAMPLE: 123456789 #lista de variales de entorno este es el ejemplo de una
